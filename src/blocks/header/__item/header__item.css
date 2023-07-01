@@ -1,0 +1,17 @@
+.header__item {
+  margin-right: 45px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 14.52px;
+}
+
+.header__item:last-of-type {
+  margin: 0;
+}
+@media screen and (max-width: 500px) {
+  .header__item {
+    font-size: 16px;
+    margin-right: 20px;
+  }
+}

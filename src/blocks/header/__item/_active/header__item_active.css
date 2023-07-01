@@ -1,0 +1,5 @@
+.header__item_active {
+  color: #ea5400;
+  padding-bottom: 5px;
+  border-bottom: 4px solid #ea5400;
+}
