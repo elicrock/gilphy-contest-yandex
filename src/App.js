@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+// import ProtectedRoute from './utils/ProtectedRoute.jsx';
 
-import * as api from './utils/Api';
+import * as api from './utils/api';
 
-import Header from './components/Header.jsx';
 import Search from './components/Search.jsx';
 import Trends from './components/Trends.jsx';
 
@@ -15,9 +15,10 @@ function App() {
   // }, []);
   return (
     <div className='page'>
-      <Header />
-      <Search />
-      {/* <Trends /> */}
+      <Routes>
+        <Route path='/' element={<Search />} />
+        <Route path='/trends' element={<Trends />} />
+      </Routes>
     </div>
   );
 }

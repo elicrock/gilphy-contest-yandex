@@ -1,15 +1,18 @@
 import React from 'react';
 import Card from './Card';
+import Header from './Header';
 
 function Trends() {
   return (
-    <main className='content'>
-      <section className='search'></section>
-      <section className='elements'>
-        {/* тут рендер должен быть */}
-        <Card />
-      </section>
-    </main>
+    <>
+      <Header />
+      <main className='content'>
+        <section className='elements'>
+          {/* тут рендер должен быть */}
+          <Card />
+        </section>
+      </main>
+    </>
   );
 }
 
