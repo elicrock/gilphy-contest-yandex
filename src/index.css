@@ -14,6 +14,8 @@
 @import url(./blocks/search/__form/search__form.css);
 @import url(./blocks/search/__input/search__input.css);
 @import url(./blocks/search/__button/search__button.css);
+@import url(./blocks/search/__clear-btn/search__clear-btn.css);
+@import url(./blocks/search/__submit-btn/search__sumbit-btn.css);
 
 @import url(./blocks/elements/elements.css);
 @import url(./blocks/elements/__list/elements__list.css);

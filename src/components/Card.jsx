@@ -12,7 +12,6 @@ function Card() {
       <li className='elements__item'></li>
       <li className='elements__item'></li>
       <li className='elements__item'></li>
-      {/* <li className='elements__item'></li> */}
     </ul>
   );
 }

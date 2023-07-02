@@ -26,9 +26,9 @@ function Search({ handleChange, handleSubmit }) {
       <main className='content'>
         <section className='search'>
           <Form handleSubmit={handleSubmit}>
-            <Input placeholder='Поле поиска' handleChange={handleChange} />
-            <Button type='submit' handleClick={handleClearClick} />
-            <Button type='button' handleClick={handleSearchClick} />
+            <Input placeholder='Искать' handleChange={handleChange} />
+            <Button type='reset' btnClass='search__clear-btn' handleClick={handleClearClick} />
+            <Button type='submit' btnClass='search__sumbit-btn' handleClick={handleSearchClick} />
           </Form>
         </section>
         <section className='elements'>

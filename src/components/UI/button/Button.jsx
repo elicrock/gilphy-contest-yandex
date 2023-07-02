@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Button({ type, handleClick }) {
+function Button({ type, btnClass, handleClick }) {
   return (
     <button
       type={type}
-      className='search__button'
+      className={`search__button ${btnClass}`}
       onClick={handleClick}
     ></button>
   );
