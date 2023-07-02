@@ -2,14 +2,17 @@ import React from 'react';
 import Card from './Card';
 import Header from './Header';
 
-function Trends() {
+function Trends({ cards }) {
   return (
     <>
       <Header />
       <main className='content'>
         <section className='elements'>
-          {/* тут рендер должен быть */}
-          <Card />
+          <ul className='elements__list'>
+            {cards.map((card) => (
+              <Card key={card.id} card={card} size={''} />
+            ))}
+          </ul>
         </section>
       </main>
     </>

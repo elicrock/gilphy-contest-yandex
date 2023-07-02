@@ -1,7 +1,9 @@
 import React from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link, useLocation } from 'react-router-dom';
 
 function Header() {
+  const location = useLocation();
+
   return (
     <header className='header'>
       <h1 className='header__title'>LOGO</h1>
@@ -12,14 +14,32 @@ function Header() {
               path='/'
               element={
                 <>
-                  <Link to='/' className='header__item'>
+                  <Link
+                    to='/'
+                    className={`header__item ${
+                      location.pathname === '/' ? 'header__item_active' : ''
+                    }`}
+                  >
                     Поиск
                   </Link>
-
-                  <Link to='/trends' className='header__item'>
+                  <Link
+                    to='/trends'
+                    className={`header__item ${
+                      location.pathname === '/trends'
+                        ? 'header__item_active'
+                        : ''
+                    }`}
+                  >
                     Тренды
                   </Link>
-                  <Link to='/random-gift' className='header__item'>
+                  <Link
+                    to='/random-gift'
+                    className={`header__item ${
+                      location.pathname === '/random-gift'
+                        ? 'header__item_active'
+                        : ''
+                    }`}
+                  >
                     Случайная гифка
                   </Link>
                 </>

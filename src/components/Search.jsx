@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import Form from './UI/form/Form';
 import Input from './UI/input/Input';
@@ -7,7 +7,6 @@ import Card from './Card';
 import Header from './Header';
 
 function Search({ cards, handleChange, handleSubmit, searchQuery }) {
-
   // useEffect(() => {}, [searchQuery]);
 
   // function handleSearchClick(evt) {
@@ -26,20 +25,23 @@ function Search({ cards, handleChange, handleSubmit, searchQuery }) {
         <section className='search'>
           <Form handleSubmit={handleSubmit}>
             <Input placeholder='Искать' handleChange={handleChange} />
-            <Button type='reset' btnClass='search__clear-btn' handleClick={handleClearClick} />
-            <Button type='submit' btnClass='search__sumbit-btn' handleClick={handleSubmit} />
+            <Button
+              type='reset'
+              btnClass='search__clear-btn'
+              handleClick={handleClearClick}
+            />
+            <Button
+              type='submit'
+              btnClass='search__sumbit-btn'
+              handleClick={handleSubmit}
+            />
           </Form>
         </section>
         <section className='elements'>
           <ul className='elements__list'>
-            {
-              cards.map((card) => (
-                <Card 
-                  key={card.id}
-                  card={card}
-                />
-              ))
-            }
+            {cards.map((card) => (
+              <Card key={card.id} card={card} size={''} />
+            ))}
           </ul>
         </section>
       </main>
