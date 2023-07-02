@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Header() {
+function Header({ onTrends }) {
   const location = useLocation();
 
   return (
@@ -12,7 +12,9 @@ function Header() {
           <li className='header__item'>
             <Link
               to='/'
-              className={`header__link ${location.pathname === '/' ? 'header__link_active' : ''}`}
+              className={`header__link ${
+                location.pathname === '/' ? 'header__link_active' : ''
+              }`}
             >
               Поиск
             </Link>
@@ -20,7 +22,10 @@ function Header() {
           <li className='header__item'>
             <Link
               to='/trends'
-              className={`header__link ${location.pathname === '/trends' ? 'header__link_active' : ''}`}
+              className={`header__link ${
+                location.pathname === '/trends' ? 'header__link_active' : ''
+              }`}
+              onClick={onTrends}
             >
               Тренды
             </Link>
@@ -28,7 +33,9 @@ function Header() {
           <li className='header__item'>
             <Link
               to='/random-gif'
-              className={`header__link ${location.pathname === '/random-gif' ? 'header__link_active' : ''}`}
+              className={`header__link ${
+                location.pathname === '/random-gif' ? 'header__link_active' : ''
+              }`}
             >
               Случайная гифка
             </Link>
