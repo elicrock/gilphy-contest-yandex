@@ -11,30 +11,55 @@ import PageNotFound from './components/UI/page-not-found/PageNotFound';
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [trends, setTrends] = useState([]);
-  const [randomGif, setRandomGif] = useState(null);
+  const [randomGif, setRandomGif] = useState({});
   const [cards, setCards] = useState([]);
   const [isSubmited, seIsSubmited] = useState(false);
 
   useEffect(() => {
     if (isSubmited) {
-      api.search(searchQuery).then((res) => {
-        setCards(res.data);
-      });
-      seIsSubmited(false);
+      seIsSubmited(true);
+      api
+        .search(searchQuery)
+        .then((res) => {
+          setCards(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          seIsSubmited(false);
+        });
     }
   }, [searchQuery, isSubmited]);
 
   function handleTrends() {
-    api.trending().then((res) => {
-      setTrends(res.data);
-    });
+    seIsSubmited(true);
+    api
+      .trending()
+      .then((res) => {
+        setTrends(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        seIsSubmited(false);
+      });
   }
-
-  useEffect(() => {
-    api.random().then((res) => {
-      setRandomGif(res.data);
-    });
-  }, []);
+  function handleRandom() {
+    seIsSubmited(true);
+    api
+      .random()
+      .then((res) => {
+        setRandomGif(res.data.images.original.url);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        seIsSubmited(false);
+      });
+  }
 
   function handleSearchClick(evt) {
     evt.preventDefault();
@@ -67,12 +92,21 @@ function App() {
           element={
             <Trends
               cards={trends}
-              setTrends={setTrends}
               onTrends={handleTrends}
+              isSubmited={isSubmited}
             />
           }
         />
-        <Route path='/random-gif' element={<RandomGif card={randomGif} />} />
+        <Route
+          path='/random-gif'
+          element={
+            <RandomGif
+              card={randomGif}
+              onRandom={handleRandom}
+              isSumbited={isSubmited}
+            />
+          }
+        />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </div>

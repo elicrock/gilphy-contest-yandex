@@ -1,7 +1,7 @@
 .elements__item {
   display: flex;
   flex-direction: column;
-  background: #d9d9d9;
+  /* background: #d9d9d9; */
   width: 296px;
   /* height: 197px; */
   border-radius: 5px;

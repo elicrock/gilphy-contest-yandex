@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Header({ onTrends }) {
+function Header({ onTrends, onRandom }) {
   const location = useLocation();
 
   return (
@@ -36,6 +36,7 @@ function Header({ onTrends }) {
               className={`header__link ${
                 location.pathname === '/random-gif' ? 'header__link_active' : ''
               }`}
+              onClick={onRandom}
             >
               Случайная гифка
             </Link>

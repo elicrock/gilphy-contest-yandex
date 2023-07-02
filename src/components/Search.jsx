@@ -5,7 +5,8 @@ import Input from './UI/input/Input';
 import Button from './UI/button/Button';
 import Card from './Card';
 import Header from './Header';
-import Spinner from './UI/loader/Spinner';
+
+import Loader from './UI/loader/Loader';
 
 function Search({
   cards,
@@ -36,12 +37,17 @@ function Search({
         </section>
         <section className='elements'>
           {isSubmited ? (
-            <Spinner />
+            <Loader />
           ) : (
             <ul className='elements__list'>
               {searchQuery
                 ? cards.map((card) => (
-                    <Card key={card.id} card={card} size={''} />
+                    <Card
+                      src={card.images.original.url}
+                      key={card.id}
+                      card={card}
+                      size={''}
+                    />
                   ))
                 : 'Вы ещё ничего не искали!'}
             </ul>
