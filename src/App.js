@@ -10,15 +10,19 @@ import PageNotFound from './components/UI/page-not-found/PageNotFound';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [cards, setCards] = useState([]);
   const [trends, setTrends] = useState([]);
   const [randomGift, setRandomGift] = useState();
+  const [cards, setCards] = useState([]);
+  const [isSubmited, seIsSubmited] = useState(false);
 
   useEffect(() => {
-    api.search(searchQuery).then((res) => {
-      setCards(res.data);
-    });
-  }, [searchQuery]);
+    if (isSubmited) {
+      api.search(searchQuery).then((res) => {
+        setCards(res.data);
+      });
+      seIsSubmited(false);
+    }
+  }, [searchQuery, isSubmited]);
 
   useEffect(() => {
     api.trending().then((res) => {
@@ -34,23 +38,18 @@ function App() {
 
   function handleSearchClick(evt) {
     evt.preventDefault();
-    setSearchQuery('cats');
+    seIsSubmited(true);
   }
+
+  const handleClearInput = () => {
+    setSearchQuery('');
+    setCards([]);
+  };
 
   return (
     <div className='page'>
       <Routes>
-        <Route
-          exact
-          path='/'
-          element={
-            <Search
-              cards={cards}
-              handleSubmit={handleSearchClick}
-              searchQuery={searchQuery}
-            />
-          }
-        />
+        <Route path='/' element={<Search cards={cards} isSubmited={isSubmited} handleClearInput={handleClearInput} handleChange={setSearchQuery} handleSubmit={handleSearchClick} searchQuery={searchQuery} />} />
         <Route path='/trends' element={<Trends cards={trends} />} />
         <Route path='/random-gift' element={<RandomGift card={randomGift} />} />
         <Route path='*' element={<PageNotFound />} />

@@ -5,44 +5,45 @@ import Input from './UI/input/Input';
 import Button from './UI/button/Button';
 import Card from './Card';
 import Header from './Header';
+import Spinner from './UI/loader/Spinner'
 
-function Search({ cards, handleChange, handleSubmit, searchQuery }) {
-  // useEffect(() => {}, [searchQuery]);
+function Search({ cards, isSubmited, handleClearInput, handleChange, handleSubmit, searchQuery }) {
 
-  // function handleSearchClick(evt) {
+  // function handleClearClick(evt) {
   //   evt.preventDefault();
-  //   // searchQuery;
   // }
-
-  function handleClearClick(evt) {
-    evt.preventDefault();
-  }
 
   return (
     <>
       <Header></Header>
       <main className='content'>
         <section className='search'>
-          <Form handleSubmit={handleSubmit}>
-            <Input placeholder='Искать' handleChange={handleChange} />
-            <Button
-              type='reset'
-              btnClass='search__clear-btn'
-              handleClick={handleClearClick}
-            />
-            <Button
-              type='submit'
-              btnClass='search__sumbit-btn'
-              handleClick={handleSubmit}
-            />
+          <Form handleSubmit={handleSubmit} >
+            <Input placeholder='Искать' handleChange={handleChange} value={searchQuery} />
+            <Button type='reset' btnClass='search__clear-btn' handleClick={handleClearInput} />
+            <Button type='submit' btnClass='search__sumbit-btn' />
           </Form>
         </section>
         <section className='elements'>
-          <ul className='elements__list'>
-            {cards.map((card) => (
-              <Card key={card.id} card={card} size={''} />
-            ))}
-          </ul>
+          {
+            isSubmited ?
+              <Spinner />
+            :
+              <ul className='elements__list'>
+              {
+                searchQuery ?
+                  cards.map((card) => (
+                    <Card 
+                      key={card.id}
+                      card={card}
+                      size={''}
+                    />
+                  ))
+                :
+                'Вы ещё ничего не искали!'
+              }
+            </ul>
+          }
         </section>
       </main>
     </>
