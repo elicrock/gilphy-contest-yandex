@@ -7,6 +7,7 @@ import Search from './components/Search.jsx';
 import Trends from './components/Trends.jsx';
 import RandomGif from './components/RandomGif';
 import PageNotFound from './components/UI/page-not-found/PageNotFound';
+// import Pagination from './components/UI/pagination/Pagination';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -96,11 +97,7 @@ function App() {
     const paginationButtons = [];
     for (let i = 1; i <= totalPages; i++) {
       paginationButtons.push(
-        <button
-          key={i}
-          onClick={() => handlePageClick(i)}
-          className={i === currentPage ? 'active' : ''}
-        >
+        <button key={i} onClick={() => handlePageClick(i)} className={i === currentPage ? 'active' : ''}>
           {i}
         </button>
       );
@@ -123,18 +120,12 @@ function App() {
                 handleSubmit={handleSearchClick}
                 searchQuery={searchQuery}
               />
-              <div id="pagination">
-                <button
-                  onClick={() => handlePageClick(currentPage - 1)}
-                  disabled={currentPage === 1}
-                >
+              <div id='pagination'>
+                <button onClick={() => handlePageClick(currentPage - 1)} disabled={currentPage === 1}>
                   Назад
                 </button>
                 {renderPagination()}
-                <button
-                  onClick={() => handlePageClick(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                >
+                <button onClick={() => handlePageClick(currentPage + 1)} disabled={currentPage === totalPages}>
                   Вперед
                 </button>
               </div>
@@ -145,24 +136,13 @@ function App() {
           path='/trends'
           element={
             <>
-              <Trends
-                cards={trends}
-                onTrends={handleTrends}
-                isSubmited={isSubmited}
-                currentPage={currentPage}
-              />
-              <div id="pagination">
-                <button
-                  onClick={() => handlePageClick(currentPage - 1)}
-                  disabled={currentPage === 1}
-                >
+              <Trends cards={trends} onTrends={handleTrends} isSubmited={isSubmited} currentPage={currentPage} />
+              <div id='pagination'>
+                <button onClick={() => handlePageClick(currentPage - 1)} disabled={currentPage === 1}>
                   Назад
                 </button>
                 {renderPagination()}
-                <button
-                  onClick={() => handlePageClick(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                >
+                <button onClick={() => handlePageClick(currentPage + 1)} disabled={currentPage === totalPages}>
                   Вперед
                 </button>
               </div>
@@ -171,16 +151,17 @@ function App() {
         />
         <Route
           path='/random-gif'
-          element={
-            <RandomGif
-              card={randomGif}
-              onRandom={handleRandom}
-              isSumbited={isSubmited}
-            />
-          }
+          element={<RandomGif card={randomGif} onRandom={handleRandom} isSumbited={isSubmited} />}
         />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
+      {/* <Pagination
+        currentPage={page}
+        onPageChange={changePage}
+        totalPages={totalPages}
+        handleClickDown={handlePrevPage}
+        handleClickGo={handleNextPage}
+      /> */}
     </div>
   );
 }
