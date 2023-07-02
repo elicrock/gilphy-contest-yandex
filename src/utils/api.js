@@ -13,9 +13,7 @@ export const BASE_URL = 'http://api.giphy.com/v1/gifs';
 export const API_KEY = 'SQHURABMQ01GCNGOXpzyEAxQu8ox3Rgw';
 
 export const search = (query) => {
-  return request(`${BASE_URL}/search?q=${query}&api_key=${API_KEY}&limit=9`, {
-    body: JSON.stringify({ query }),
-  });
+  return request(`${BASE_URL}/search?q=${query}&api_key=${API_KEY}&limit=9`);
 };
 
 export const trending = () => {
