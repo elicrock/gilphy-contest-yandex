@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes, Link, useLocation } from 'react-router-dom';
 
-function Header() {
+function Header({ onTrends }) {
   const location = useLocation();
 
   return (
@@ -29,6 +29,7 @@ function Header() {
                         ? 'header__item_active'
                         : ''
                     }`}
+                    onClick={onTrends}
                   >
                     Тренды
                   </Link>

@@ -5,13 +5,13 @@ import * as api from './utils/api';
 
 import Search from './components/Search.jsx';
 import Trends from './components/Trends.jsx';
-import RandomGift from './components/RandomGift';
+import RandomGif from './components/RandomGif';
 import PageNotFound from './components/UI/page-not-found/PageNotFound';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [trends, setTrends] = useState([]);
-  const [randomGift, setRandomGift] = useState();
+  const [randomGif, setRandomGif] = useState(null);
   const [cards, setCards] = useState([]);
   const [isSubmited, seIsSubmited] = useState(false);
 
@@ -24,15 +24,15 @@ function App() {
     }
   }, [searchQuery, isSubmited]);
 
-  useEffect(() => {
+  function handleTrends() {
     api.trending().then((res) => {
       setTrends(res.data);
     });
-  }, []);
+  }
 
   useEffect(() => {
     api.random().then((res) => {
-      setRandomGift(res.data);
+      setRandomGif(res.data);
     });
   }, []);
 
@@ -49,9 +49,30 @@ function App() {
   return (
     <div className='page'>
       <Routes>
-        <Route path='/' element={<Search cards={cards} isSubmited={isSubmited} handleClearInput={handleClearInput} handleChange={setSearchQuery} handleSubmit={handleSearchClick} searchQuery={searchQuery} />} />
-        <Route path='/trends' element={<Trends cards={trends} />} />
-        <Route path='/random-gift' element={<RandomGift card={randomGift} />} />
+        <Route
+          path='/'
+          element={
+            <Search
+              cards={cards}
+              isSubmited={isSubmited}
+              handleClearInput={handleClearInput}
+              handleChange={setSearchQuery}
+              handleSubmit={handleSearchClick}
+              searchQuery={searchQuery}
+            />
+          }
+        />
+        <Route
+          path='/trends'
+          element={
+            <Trends
+              cards={trends}
+              setTrends={setTrends}
+              onTrends={handleTrends}
+            />
+          }
+        />
+        <Route path='/random-gift' element={<RandomGif card={randomGif} />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </div>
