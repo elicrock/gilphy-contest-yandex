@@ -6,15 +6,14 @@ import Button from './UI/button/Button';
 import Card from './Card';
 import Header from './Header';
 
-function Search({ handleChange, handleSubmit }) {
-  const [searchQuery, setSearchQuery] = useState('');
+function Search({ cards, handleChange, handleSubmit, searchQuery }) {
 
-  useEffect(() => {}, [searchQuery]);
+  // useEffect(() => {}, [searchQuery]);
 
-  function handleSearchClick(evt) {
-    evt.preventDefault();
-    setSearchQuery('cats');
-  }
+  // function handleSearchClick(evt) {
+  //   evt.preventDefault();
+  //   // searchQuery;
+  // }
 
   function handleClearClick(evt) {
     evt.preventDefault();
@@ -28,12 +27,20 @@ function Search({ handleChange, handleSubmit }) {
           <Form handleSubmit={handleSubmit}>
             <Input placeholder='Искать' handleChange={handleChange} />
             <Button type='reset' btnClass='search__clear-btn' handleClick={handleClearClick} />
-            <Button type='submit' btnClass='search__sumbit-btn' handleClick={handleSearchClick} />
+            <Button type='submit' btnClass='search__sumbit-btn' handleClick={handleSubmit} />
           </Form>
         </section>
         <section className='elements'>
-          {/* тут рендер должен быть */}
-          <Card />
+          <ul className='elements__list'>
+            {
+              cards.map((card) => (
+                <Card 
+                  key={card.id}
+                  card={card}
+                />
+              ))
+            }
+          </ul>
         </section>
       </main>
     </>

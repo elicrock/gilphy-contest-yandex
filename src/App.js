@@ -8,20 +8,27 @@ import Search from './components/Search.jsx';
 import Trends from './components/Trends.jsx';
 
 function App() {
-  const [cards, setCards] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
+  const [cards, setCards] = useState([]);
 
 
-  // useEffect(() => {
-  //   api.random().then((response) => {
-  //     console.log(response);
-  //   });
-  // }, []);
+  useEffect(() => {
+    api.search(searchQuery).then((res) => {
+      setCards(res.data);
+      console.log(res.data);
+    });
+  }, [searchQuery]);
+
+  function handleSearchClick(evt) {
+    evt.preventDefault();
+    setSearchQuery('cats')
+  }
 
 
   return (
     <div className='page'>
       <Routes>
-        <Route path='/' element={<Search />} cards={cards} />
+        <Route path='/' element={<Search cards={cards} handleSubmit={handleSearchClick} searchQuery={searchQuery} />} />
         <Route path='/trends' element={<Trends />} />
       </Routes>
     </div>
