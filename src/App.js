@@ -72,7 +72,7 @@ function App() {
             />
           }
         />
-        <Route path='/random-gift' element={<RandomGif card={randomGif} />} />
+        <Route path='/random-gif' element={<RandomGif card={randomGif} />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </div>
