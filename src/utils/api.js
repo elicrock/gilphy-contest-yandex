@@ -12,12 +12,14 @@ function request(url, options) {
 export const BASE_URL = 'http://api.giphy.com/v1/gifs';
 export const API_KEY = 'SQHURABMQ01GCNGOXpzyEAxQu8ox3Rgw';
 
-export const search = (query) => {
-  return request(`${BASE_URL}/search?q=${query}&api_key=${API_KEY}&limit=9`);
+export const search = (query, page) => {
+  const offset = (page - 1) * 9;
+  return request(`${BASE_URL}/search?q=${query}&api_key=${API_KEY}&limit=9&offset=${offset}`);
 };
 
-export const trending = () => {
-  return request(`${BASE_URL}/trending?&api_key=${API_KEY}&limit=9`);
+export const trending = (page) => {
+  const offset = (page - 1) * 9;
+  return request(`${BASE_URL}/trending?&api_key=${API_KEY}&limit=9&offset=${offset}`);
 };
 
 export const random = () => {

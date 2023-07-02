@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 
 import * as api from './utils/api';
 
@@ -13,29 +13,41 @@ function App() {
   const [trends, setTrends] = useState([]);
   const [randomGif, setRandomGif] = useState({});
   const [cards, setCards] = useState([]);
-  const [isSubmited, seIsSubmited] = useState(false);
+  const [isSubmited, setIsSubmited] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const page = parseInt(searchParams.get('page')) || 1;
+    setCurrentPage(page);
+  }, [location.search]);
 
   useEffect(() => {
     if (isSubmited) {
-      seIsSubmited(true);
+      setIsSubmited(true);
       api
-        .search(searchQuery)
+        .search(searchQuery, currentPage)
         .then((res) => {
           setCards(res.data);
+          setTotalPages(res.pagination.total_pages);
         })
         .catch((error) => {
           console.log(error);
         })
         .finally(() => {
-          seIsSubmited(false);
+          setIsSubmited(false);
         });
     }
-  }, [searchQuery, isSubmited]);
+  }, [searchQuery, currentPage, isSubmited]);
 
-  function handleTrends() {
-    seIsSubmited(true);
+  function handleTrends(currentPage) {
+    setIsSubmited(true);
     api
-      .trending()
+      .trending(currentPage)
       .then((res) => {
         setTrends(res.data);
       })
@@ -43,11 +55,12 @@ function App() {
         console.log(error);
       })
       .finally(() => {
-        seIsSubmited(false);
+        setIsSubmited(false);
       });
   }
+
   function handleRandom() {
-    seIsSubmited(true);
+    setIsSubmited(true);
     api
       .random()
       .then((res) => {
@@ -57,13 +70,21 @@ function App() {
         console.log(error);
       })
       .finally(() => {
-        seIsSubmited(false);
+        setIsSubmited(false);
       });
   }
 
   function handleSearchClick(evt) {
     evt.preventDefault();
-    seIsSubmited(true);
+    setIsSubmited(true);
+    setCurrentPage(1);
+    navigate(`/?page=1`);
+  }
+
+  function handlePageClick(pageNumber) {
+    setIsSubmited(true);
+    setCurrentPage(pageNumber);
+    navigate(`?page=${pageNumber}`, { replace: true });
   }
 
   const handleClearInput = () => {
@@ -71,30 +92,81 @@ function App() {
     setCards([]);
   };
 
+  function renderPagination() {
+    const paginationButtons = [];
+    for (let i = 1; i <= totalPages; i++) {
+      paginationButtons.push(
+        <button
+          key={i}
+          onClick={() => handlePageClick(i)}
+          className={i === currentPage ? 'active' : ''}
+        >
+          {i}
+        </button>
+      );
+    }
+    return paginationButtons;
+  }
+
   return (
     <div className='page'>
       <Routes>
         <Route
           path='/'
           element={
-            <Search
-              cards={cards}
-              isSubmited={isSubmited}
-              handleClearInput={handleClearInput}
-              handleChange={setSearchQuery}
-              handleSubmit={handleSearchClick}
-              searchQuery={searchQuery}
-            />
+            <>
+              <Search
+                cards={cards}
+                isSubmited={isSubmited}
+                handleClearInput={handleClearInput}
+                handleChange={setSearchQuery}
+                handleSubmit={handleSearchClick}
+                searchQuery={searchQuery}
+              />
+              <div id="pagination">
+                <button
+                  onClick={() => handlePageClick(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  Назад
+                </button>
+                {renderPagination()}
+                <button
+                  onClick={() => handlePageClick(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                >
+                  Вперед
+                </button>
+              </div>
+            </>
           }
         />
         <Route
           path='/trends'
           element={
-            <Trends
-              cards={trends}
-              onTrends={handleTrends}
-              isSubmited={isSubmited}
-            />
+            <>
+              <Trends
+                cards={trends}
+                onTrends={handleTrends}
+                isSubmited={isSubmited}
+                currentPage={currentPage}
+              />
+              <div id="pagination">
+                <button
+                  onClick={() => handlePageClick(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  Назад
+                </button>
+                {renderPagination()}
+                <button
+                  onClick={() => handlePageClick(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                >
+                  Вперед
+                </button>
+              </div>
+            </>
           }
         />
         <Route

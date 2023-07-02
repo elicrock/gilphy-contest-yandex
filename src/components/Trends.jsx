@@ -3,11 +3,11 @@ import Card from './Card';
 import Header from './Header';
 import Loader from './UI/loader/Loader';
 
-function Trends({ cards, onTrends, isSubmited }) {
+function Trends({ cards, onTrends, isSubmited, currentPage }) {
   useEffect(() => {
-    onTrends();
+    onTrends(currentPage);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentPage]);
 
   return (
     <>
