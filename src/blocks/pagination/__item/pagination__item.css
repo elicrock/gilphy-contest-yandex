@@ -1,0 +1,6 @@
+.pagination__item {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}

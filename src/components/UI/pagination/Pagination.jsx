@@ -1,11 +1,30 @@
 import React from 'react';
-import Button from '../button/Button';
 
-function Pagination() {
+function Pagination({ currentPage, totalPages, onPageChange, handleClickGo, handleClickDown }) {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
   return (
-    <div>
-      <Button>ЕЩЕ ПОСТОВ</Button>
-    </div>
+    <>
+      <ul className='pagination'>
+        <button onClick={handleClickDown}>НАЗАД</button>
+        {pageNumbers.map((pageNumber) => (
+          <li
+            key={pageNumber}
+            onClick={() => {
+              onPageChange(pageNumber);
+            }}
+            className={`pagination__item ${pageNumber === currentPage ? 'pagination__item_active' : ''}`}
+          >
+            {pageNumber}
+          </li>
+        ))}
+        <button onClick={handleClickGo}>Вперед</button>
+      </ul>
+    </>
   );
 }
 
