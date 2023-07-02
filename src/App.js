@@ -51,7 +51,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Search cards={cards} isSubmited={isSubmited} handleClearInput={handleClearInput} handleChange={setSearchQuery} handleSubmit={handleSearchClick} searchQuery={searchQuery} />} />
         <Route path='/trends' element={<Trends cards={trends} />} />
-        <Route path='/random-gift' element={<RandomGift card={randomGift} />} />
+        <Route path='/random-gif' element={<RandomGift card={randomGift} />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </div>

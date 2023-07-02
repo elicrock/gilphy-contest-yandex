@@ -4,4 +4,11 @@
   list-style: none;
   display: flex;
   justify-content: center;
+  column-gap: 45px;
+}
+
+@media screen and (max-width: 768px) {
+  .header__links {
+    column-gap: calc((100vw - 320px)/(768 - 320) * (45 - 20) + 20px);
+  }
 }

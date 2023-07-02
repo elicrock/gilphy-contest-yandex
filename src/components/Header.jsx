@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Header() {
   const location = useLocation();
@@ -9,43 +9,30 @@ function Header() {
       <h1 className='header__title'>LOGO</h1>
       <nav className='header__navigation'>
         <ul className='header__links'>
-          <Routes>
-            <Route
-              path='/'
-              element={
-                <>
-                  <Link
-                    to='/'
-                    className={`header__item ${
-                      location.pathname === '/' ? 'header__item_active' : ''
-                    }`}
-                  >
-                    Поиск
-                  </Link>
-                  <Link
-                    to='/trends'
-                    className={`header__item ${
-                      location.pathname === '/trends'
-                        ? 'header__item_active'
-                        : ''
-                    }`}
-                  >
-                    Тренды
-                  </Link>
-                  <Link
-                    to='/random-gift'
-                    className={`header__item ${
-                      location.pathname === '/random-gift'
-                        ? 'header__item_active'
-                        : ''
-                    }`}
-                  >
-                    Случайная гифка
-                  </Link>
-                </>
-              }
-            />
-          </Routes>
+          <li className='header__item'>
+            <Link
+              to='/'
+              className={`header__link ${location.pathname === '/' ? 'header__link_active' : ''}`}
+            >
+              Поиск
+            </Link>
+          </li>
+          <li className='header__item'>
+            <Link
+              to='/trends'
+              className={`header__link ${location.pathname === '/trends' ? 'header__link_active' : ''}`}
+            >
+              Тренды
+            </Link>
+          </li>
+          <li className='header__item'>
+            <Link
+              to='/random-gif'
+              className={`header__link ${location.pathname === '/random-gif' ? 'header__link_active' : ''}`}
+            >
+              Случайная гифка
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>
