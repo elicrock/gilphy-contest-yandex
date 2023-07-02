@@ -4,6 +4,11 @@
   font-weight: 400;
   font-size: 22px;
   line-height: 14.52px;
+  text-decoration: none;
+  color: #000;
+}
+.header__item:hover {
+  opacity: 0.4;
 }
 
 .header__item:last-of-type {

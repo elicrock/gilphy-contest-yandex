@@ -20,3 +20,8 @@
 @import url(./blocks/elements/elements.css);
 @import url(./blocks/elements/__list/elements__list.css);
 @import url(./blocks/elements/__item/elements__item.css);
+
+@import url(./blocks/page-not-found/page-not-found.css);
+@import url(./blocks/page-not-found/__number/page-not-found__number.css);
+@import url(./blocks/page-not-found/__note/page-not-found__note.css);
+@import url(./blocks/page-not-found/__link/page-not-found__link.css);

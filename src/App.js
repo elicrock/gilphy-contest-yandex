@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-// import ProtectedRoute from './utils/ProtectedRoute.jsx';
+import ProtectedRoute from './utils/ProtectedRoute.jsx';
 
 import * as api from './utils/api';
 
 import Search from './components/Search.jsx';
 import Trends from './components/Trends.jsx';
+import RandomGift from './components/RandomGift';
+import PageNotFound from './components/UI/page-not-found/PageNotFound';
 
 function App() {
-  const [cards, setCards] = useState({});
-
-
   // useEffect(() => {
   //   api.random().then((response) => {
   //     console.log(response);
   //   });
   // }, []);
 
-
   return (
     <div className='page'>
       <Routes>
-        <Route path='/' element={<Search />} cards={cards} />
+        <Route path='/' element={<ProtectedRoute element={Search} />} />
         <Route path='/trends' element={<Trends />} />
+        <Route path='/random-gift' element={<RandomGift />} />
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
     </div>
   );

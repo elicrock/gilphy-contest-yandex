@@ -15,6 +15,7 @@ function Header() {
                   <Link to='/' className='header__item'>
                     Поиск
                   </Link>
+
                   <Link to='/trends' className='header__item'>
                     Тренды
                   </Link>
