@@ -11,24 +11,32 @@ import PageNotFound from './components/UI/page-not-found/PageNotFound';
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [cards, setCards] = useState([]);
-
+  const [isSubmited, seIsSubmited] = useState(false);
 
   useEffect(() => {
-    api.search(searchQuery).then((res) => {
-      setCards(res.data);
-      console.log(res.data);
-    });
-  }, [searchQuery]);
+    if (isSubmited) {
+      api.search(searchQuery).then((res) => {
+        setCards(res.data);
+      });
+      seIsSubmited(false);
+      // setSearchQuery('');
+    }
+  }, [searchQuery, isSubmited]);
 
   function handleSearchClick(evt) {
     evt.preventDefault();
-    setSearchQuery('cats')
+    seIsSubmited(true);
   }
+
+  const handleClearInput = () => {
+    setSearchQuery('');
+    setCards([]);
+  };
 
   return (
     <div className='page'>
       <Routes>
-        <Route path='/' element={<Search cards={cards} handleSubmit={handleSearchClick} searchQuery={searchQuery} />} />
+        <Route path='/' element={<Search cards={cards} isSubmited={isSubmited} handleClearInput={handleClearInput} handleChange={setSearchQuery} handleSubmit={handleSearchClick} searchQuery={searchQuery} />} />
         <Route path='/trends' element={<Trends />} />
         <Route path='/random-gift' element={<RandomGift />} />
         <Route path='*' element={<PageNotFound />} />
