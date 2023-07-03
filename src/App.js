@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
-
 import * as api from './utils/api';
-
+import { getPageCount } from './utils/utils';
 import Search from './components/Search.jsx';
 import Trends from './components/Trends.jsx';
 import RandomGif from './components/RandomGif';
 import PageNotFound from './components/UI/page-not-found/PageNotFound';
+import ImagePopup from './components/ImagePopup';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,26 +16,10 @@ function App() {
   const [isSubmited, setIsSubmited] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  function changePage(page) {
-    setIsSubmited(true);
-    setCurrentPage(page);
-    // handlePageClick(page);
-    navigate(`?page=${page}`, { replace: true });
-  }
-
-  // function handlePageClick(pageNumber) {
-  //   setIsSubmited(true);
-  //   setCurrentPage(pageNumber);
-  //   navigate(`?page=${pageNumber}`, { replace: true });
-  // }
-
-  const getPageCount = (totalCount, limit = 9) => {
-    return Math.ceil(totalCount / limit);
-  };
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -92,6 +76,20 @@ function App() {
       });
   }
 
+  function handleCardClick(card) {
+    setSelectedCard(card);
+  }
+
+  function closePopup() {
+    setSelectedCard(null);
+  }
+
+  function changePage(page) {
+    setIsSubmited(true);
+    setCurrentPage(page);
+    navigate(`?page=${page}`, { replace: true });
+  }
+
   function handleSearchClick(evt) {
     evt.preventDefault();
     setIsSubmited(true);
@@ -99,10 +97,10 @@ function App() {
     navigate(`/?page=1`);
   }
 
-  const handleClearInput = () => {
+  function handleClearInput() {
     setSearchQuery('');
     setCards([]);
-  };
+  }
 
   return (
     <div className='page'>
@@ -121,6 +119,7 @@ function App() {
               currentPage={currentPage}
               changePage={changePage}
               totalPages={totalPages}
+              onCardClick={handleCardClick}
             />
           }
         />
@@ -134,15 +133,19 @@ function App() {
               currentPage={currentPage}
               changePage={changePage}
               totalPages={totalPages}
+              onCardClick={handleCardClick}
             />
           }
         />
         <Route
           path='/random-gif'
-          element={<RandomGif card={randomGif} onRandom={handleRandom} isSubmited={isSubmited} />}
+          element={
+            <RandomGif card={randomGif} onRandom={handleRandom} isSubmited={isSubmited} onCardClick={handleCardClick} />
+          }
         />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
+      <ImagePopup card={selectedCard} onClose={closePopup} />
     </div>
   );
 }

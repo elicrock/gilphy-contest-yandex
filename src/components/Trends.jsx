@@ -4,7 +4,7 @@ import Header from './Header';
 import Pagination from './UI/pagination/Pagination';
 import Loader from './UI/loader/Loader';
 
-function Trends({ cards, onTrends, isSubmited, currentPage, changePage, totalPages }) {
+function Trends({ cards, onTrends, isSubmited, currentPage, changePage, totalPages, onCardClick }) {
   useEffect(() => {
     onTrends(currentPage);
 
@@ -21,16 +21,12 @@ function Trends({ cards, onTrends, isSubmited, currentPage, changePage, totalPag
           ) : (
             <ul className='elements__list'>
               {cards.map((card) => (
-                <Card key={card.id} card={card} size={''} />
+                <Card key={card.id} card={card} size={''} onCardClick={onCardClick} />
               ))}
             </ul>
           )}
         </section>
-        <Pagination
-          currentPage={currentPage}
-          onPageChange={changePage}
-          totalPages={totalPages}
-        />
+        <Pagination currentPage={currentPage} onPageChange={changePage} totalPages={totalPages} />
       </main>
     </>
   );

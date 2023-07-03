@@ -20,55 +20,39 @@ function Search({
   currentPage,
   changePage,
   totalPages,
+  onCardClick,
 }) {
-
   useEffect(() => {
     onSearch(currentPage);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, currentPage, isSubmited]);
-  
+
   return (
     <>
       <Header></Header>
       <main className='content'>
         <section className='search'>
           <Form handleSubmit={handleSubmit}>
-            <Input
-              placeholder='Искать'
-              handleChange={handleChange}
-              value={searchQuery}
-            />
-            <Button
-              type='reset'
-              btnClass='search__clear-btn'
-              handleClick={handleClearInput}
-            />
+            <Input placeholder='Искать' handleChange={handleChange} value={searchQuery} />
+            <Button type='reset' btnClass='search__clear-btn' handleClick={handleClearInput} />
             <Button type='submit' btnClass='search__sumbit-btn' />
           </Form>
         </section>
         <section className='elements'>
           {isSubmited ? (
             <Loader />
+          ) : searchQuery ? (
+            <ul className='elements__list'>
+              {cards.map((card) => (
+                <Card key={card.id} card={card} size={''} onCardClick={onCardClick} />
+              ))}
+            </ul>
           ) : (
-            searchQuery ? (
-              <ul className='elements__list'>
-                {cards.map((card) => (
-                  <Card key={card.id} card={card} size={''} />
-                ))}
-              </ul>
-            ) : (
-              <p className='elements__note'>Вы ещё ничего не искали!</p>
-            )
+            <p className='elements__note'>Вы ещё ничего не искали!</p>
           )}
         </section>
-        {cards.length > 0 && (
-          <Pagination
-            currentPage={currentPage}
-            onPageChange={changePage}
-            totalPages={totalPages}
-          />
-        )}
+        {cards.length > 0 && <Pagination currentPage={currentPage} onPageChange={changePage} totalPages={totalPages} />}
       </main>
     </>
   );

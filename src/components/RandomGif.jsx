@@ -3,7 +3,7 @@ import Header from './Header';
 import Card from './Card';
 import Loader from './UI/loader/Loader';
 
-function RandomGif({ card, onRandom, isSubmited }) {
+function RandomGif({ card, onRandom, isSubmited, onCardClick }) {
   useEffect(() => {
     onRandom();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -18,7 +18,7 @@ function RandomGif({ card, onRandom, isSubmited }) {
             <Loader />
           ) : (
             <ul className='elements__list'>
-              <Card card={card} size={'elements__item_big'} />
+              <Card card={card} size={'elements__item_big'} onCardClick={onCardClick} />
             </ul>
           )}
         </section>
