@@ -7,7 +7,7 @@ import Search from './components/Search.jsx';
 import Trends from './components/Trends.jsx';
 import RandomGif from './components/RandomGif';
 import PageNotFound from './components/UI/page-not-found/PageNotFound';
-// import Pagination from './components/UI/pagination/Pagination';
+import Pagination from './components/UI/pagination/Pagination';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,10 +16,38 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isSubmited, setIsSubmited] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  function handlePrevPage() {
+    if (currentPage > 1) {
+      changePage(currentPage - 1);
+    }
+  }
+
+  function handleNextPage() {
+    if (currentPage < totalPages) {
+      changePage(currentPage + 1);
+    }
+  }
+
+  function changePage(page) {
+    setCurrentPage(page);
+    handlePageClick(page);
+  }
+
+  function handlePageClick(pageNumber) {
+    setIsSubmited(true);
+    setCurrentPage(pageNumber);
+    navigate(`?page=${pageNumber}`, { replace: true });
+  }
+
+  const getPageCount = (totalCount, limit = 9) => {
+    const totalPages = Math.ceil(totalCount / limit);
+    return Math.min(totalPages, 10);
+  };
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -34,7 +62,7 @@ function App() {
         .search(searchQuery, currentPage)
         .then((res) => {
           setCards(res.data);
-          setTotalPages(res.pagination.total_pages);
+          setTotalPages(getPageCount(res.pagination.total_count));
         })
         .catch((error) => {
           console.log(error);
@@ -51,6 +79,7 @@ function App() {
       .trending(currentPage)
       .then((res) => {
         setTrends(res.data);
+        setTotalPages(getPageCount(res.pagination.total_count));
       })
       .catch((error) => {
         console.log(error);
@@ -82,28 +111,10 @@ function App() {
     navigate(`/?page=1`);
   }
 
-  function handlePageClick(pageNumber) {
-    setIsSubmited(true);
-    setCurrentPage(pageNumber);
-    navigate(`?page=${pageNumber}`, { replace: true });
-  }
-
   const handleClearInput = () => {
     setSearchQuery('');
     setCards([]);
   };
-
-  function renderPagination() {
-    const paginationButtons = [];
-    for (let i = 1; i <= totalPages; i++) {
-      paginationButtons.push(
-        <button key={i} onClick={() => handlePageClick(i)} className={i === currentPage ? 'active' : ''}>
-          {i}
-        </button>
-      );
-    }
-    return paginationButtons;
-  }
 
   return (
     <div className='page'>
@@ -120,15 +131,13 @@ function App() {
                 handleSubmit={handleSearchClick}
                 searchQuery={searchQuery}
               />
-              <div id='pagination'>
-                <button onClick={() => handlePageClick(currentPage - 1)} disabled={currentPage === 1}>
-                  Назад
-                </button>
-                {renderPagination()}
-                <button onClick={() => handlePageClick(currentPage + 1)} disabled={currentPage === totalPages}>
-                  Вперед
-                </button>
-              </div>
+              <Pagination
+                currentPage={currentPage}
+                onPageChange={changePage}
+                totalPages={totalPages}
+                handleClickDown={handlePrevPage}
+                handleClickGo={handleNextPage}
+              />
             </>
           }
         />
@@ -137,15 +146,13 @@ function App() {
           element={
             <>
               <Trends cards={trends} onTrends={handleTrends} isSubmited={isSubmited} currentPage={currentPage} />
-              <div id='pagination'>
-                <button onClick={() => handlePageClick(currentPage - 1)} disabled={currentPage === 1}>
-                  Назад
-                </button>
-                {renderPagination()}
-                <button onClick={() => handlePageClick(currentPage + 1)} disabled={currentPage === totalPages}>
-                  Вперед
-                </button>
-              </div>
+              <Pagination
+                currentPage={currentPage}
+                onPageChange={changePage}
+                totalPages={totalPages}
+                handleClickDown={handlePrevPage}
+                handleClickGo={handleNextPage}
+              />
             </>
           }
         />
@@ -155,13 +162,6 @@ function App() {
         />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
-      {/* <Pagination
-        currentPage={page}
-        onPageChange={changePage}
-        totalPages={totalPages}
-        handleClickDown={handlePrevPage}
-        handleClickGo={handleNextPage}
-      /> */}
     </div>
   );
 }
