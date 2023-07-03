@@ -55,7 +55,7 @@ function App() {
     setCurrentPage(page);
   }, [location.search]);
 
-  useEffect(() => {
+  function handleSearch() {
     if (isSubmited) {
       setIsSubmited(true);
       api
@@ -71,7 +71,7 @@ function App() {
           setIsSubmited(false);
         });
     }
-  }, [searchQuery, currentPage, isSubmited]);
+  }
 
   function handleTrends(currentPage) {
     setIsSubmited(true);
@@ -130,6 +130,8 @@ function App() {
                 handleChange={setSearchQuery}
                 handleSubmit={handleSearchClick}
                 searchQuery={searchQuery}
+                onSearch={handleSearch}
+                currentPage={currentPage}
               />
               <Pagination
                 currentPage={currentPage}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Form from './UI/form/Form';
 import Input from './UI/input/Input';
@@ -15,7 +15,16 @@ function Search({
   handleChange,
   handleSubmit,
   searchQuery,
+  onSearch,
+  currentPage
 }) {
+
+  useEffect(() => {
+    onSearch(currentPage);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery, currentPage, isSubmited]);
+  
   return (
     <>
       <Header></Header>
