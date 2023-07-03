@@ -2,4 +2,5 @@
   width: 100%;
   height: auto;
   flex-direction: row;
+  aspect-ratio: 2/1;
 }

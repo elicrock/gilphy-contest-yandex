@@ -1,4 +1,9 @@
 .elements__img {
   width: 100%;
   object-fit: cover;
+  transition: scale 0.3s;
+}
+
+.elements__img:hover {
+  scale: 1.2;
 }
