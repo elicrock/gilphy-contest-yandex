@@ -1,0 +1,11 @@
+.header__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 446px) {
+  .header__logo {
+    justify-content: space-between;
+  }
+}

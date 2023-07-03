@@ -1,0 +1,7 @@
+.header__links_mobile-open {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+  gap: 20px;
+  border-bottom: 1px solid #ea5400;
+}

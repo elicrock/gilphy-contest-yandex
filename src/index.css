@@ -3,8 +3,14 @@
 @import url(./blocks/loader/loader.css);
 
 @import url(./blocks/header/header.css);
+@import url(./blocks/header/__logo/header__logo.css);
 @import url(./blocks/header/__title/header__title.css);
+@import url(./blocks/header/__navigation/header__navigation.css);
+@import url(./blocks/header/__burger/header__burger.css);
+@import url(./blocks/header/__burger-line/header__burger-line.css);
+@import url(./blocks/header/__burger-line/_close/header__burger-line_close.css);
 @import url(./blocks/header/__links/header__links.css);
+@import url(./blocks/header/__links/_mobile-open/header__links_mobile-open.css);
 @import url(./blocks/header/__link/header__link.css);
 @import url(./blocks/header/__link/_active/header__link_active.css);
 

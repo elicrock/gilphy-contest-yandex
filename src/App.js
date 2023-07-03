@@ -151,7 +151,7 @@ function App() {
         />
         <Route
           path='/random-gif'
-          element={<RandomGif card={randomGif} onRandom={handleRandom} isSumbited={isSubmited} />}
+          element={<RandomGif card={randomGif} onRandom={handleRandom} isSubmited={isSubmited} />}
         />
         <Route path='*' element={<PageNotFound />} />
       </Routes>

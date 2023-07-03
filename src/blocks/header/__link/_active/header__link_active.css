@@ -3,3 +3,7 @@
   padding-bottom: 5px;
   border-bottom: 4px solid #ea5400;
 }
+
+.header__link_active:hover {
+  opacity: 1;
+}
