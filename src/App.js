@@ -65,7 +65,7 @@ function App() {
     api
       .random()
       .then((res) => {
-        setRandomGif(res.data.images.original.url);
+        setRandomGif(res.data);
       })
       .catch((error) => {
         console.log(error);

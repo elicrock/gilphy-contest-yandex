@@ -15,7 +15,7 @@ function RandomGif({ card, onRandom, isSumbited }) {
       {isSumbited ? (
         <Loader />
       ) : (
-        <Card src={card} card={card} size={'elements__item_big'} />
+        <Card card={card} size={'elements__item_big'} />
       )}
     </>
   );

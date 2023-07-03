@@ -19,12 +19,7 @@ function Trends({ cards, onTrends, isSubmited, currentPage }) {
           ) : (
             <ul className='elements__list'>
               {cards.map((card) => (
-                <Card
-                  src={card.images.original.url}
-                  key={card.id}
-                  card={card}
-                  size={''}
-                />
+                <Card key={card.id} card={card} size={''} />
               ))}
             </ul>
           )}

@@ -42,13 +42,8 @@ function Search({
             <ul className='elements__list'>
               {searchQuery
                 ? cards.map((card) => (
-                    <Card
-                      src={card.images.original.url}
-                      key={card.id}
-                      card={card}
-                      size={''}
-                    />
-                  ))
+                  <Card key={card.id} card={card} size={''} />
+                ))
                 : 'Вы ещё ничего не искали!'}
             </ul>
           )}
