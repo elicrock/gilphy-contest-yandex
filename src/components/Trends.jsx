@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import Card from './Card';
 import Header from './Header';
+import Pagination from './UI/pagination/Pagination';
 import Loader from './UI/loader/Loader';
 
-function Trends({ cards, onTrends, isSubmited, currentPage }) {
+function Trends({ cards, onTrends, isSubmited, currentPage, changePage, totalPages }) {
   useEffect(() => {
     onTrends(currentPage);
 
@@ -25,6 +26,11 @@ function Trends({ cards, onTrends, isSubmited, currentPage }) {
             </ul>
           )}
         </section>
+        <Pagination
+          currentPage={currentPage}
+          onPageChange={changePage}
+          totalPages={totalPages}
+        />
       </main>
     </>
   );

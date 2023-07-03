@@ -5,6 +5,7 @@ import Input from './UI/input/Input';
 import Button from './UI/button/Button';
 import Card from './Card';
 import Header from './Header';
+import Pagination from './UI/pagination/Pagination';
 
 import Loader from './UI/loader/Loader';
 
@@ -16,7 +17,9 @@ function Search({
   handleSubmit,
   searchQuery,
   onSearch,
-  currentPage
+  currentPage,
+  changePage,
+  totalPages,
 }) {
 
   useEffect(() => {
@@ -48,15 +51,24 @@ function Search({
           {isSubmited ? (
             <Loader />
           ) : (
-            <ul className='elements__list'>
-              {searchQuery
-                ? cards.map((card) => (
+            searchQuery ? (
+              <ul className='elements__list'>
+                {cards.map((card) => (
                   <Card key={card.id} card={card} size={''} />
-                ))
-                : 'Вы ещё ничего не искали!'}
-            </ul>
+                ))}
+              </ul>
+            ) : (
+              <p className='elements__note'>Вы ещё ничего не искали!</p>
+            )
           )}
         </section>
+        {cards.length > 0 && (
+          <Pagination
+            currentPage={currentPage}
+            onPageChange={changePage}
+            totalPages={totalPages}
+          />
+        )}
       </main>
     </>
   );

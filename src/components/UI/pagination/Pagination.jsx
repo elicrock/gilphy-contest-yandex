@@ -1,16 +1,29 @@
 import React from 'react';
 
-function Pagination({ currentPage, totalPages, onPageChange, handleClickGo, handleClickDown }) {
+function Pagination({ currentPage, totalPages, onPageChange }) {
   const pageNumbers = [];
 
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
 
+  function handlePrevPage() {
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1);
+    }
+  }
+
+  function handleNextPage() {
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1);
+    }
+  }
+
+
   return (
     <>
       <ul className='pagination'>
-        <button onClick={handleClickDown}>НАЗАД</button>
+        <button onClick={handlePrevPage}>НАЗАД</button>
         {pageNumbers.map((pageNumber) => (
           <li
             key={pageNumber}
@@ -22,7 +35,7 @@ function Pagination({ currentPage, totalPages, onPageChange, handleClickGo, hand
             {pageNumber}
           </li>
         ))}
-        <button onClick={handleClickGo}>Вперед</button>
+        <button onClick={handleNextPage}>Вперед</button>
       </ul>
     </>
   );

@@ -7,7 +7,6 @@ import Search from './components/Search.jsx';
 import Trends from './components/Trends.jsx';
 import RandomGif from './components/RandomGif';
 import PageNotFound from './components/UI/page-not-found/PageNotFound';
-import Pagination from './components/UI/pagination/Pagination';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,28 +20,18 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  function handlePrevPage() {
-    if (currentPage > 1) {
-      changePage(currentPage - 1);
-    }
-  }
-
-  function handleNextPage() {
-    if (currentPage < totalPages) {
-      changePage(currentPage + 1);
-    }
-  }
-
   function changePage(page) {
+    setIsSubmited(true);
     setCurrentPage(page);
-    handlePageClick(page);
+    // handlePageClick(page);
+    navigate(`?page=${page}`, { replace: true });
   }
 
-  function handlePageClick(pageNumber) {
-    setIsSubmited(true);
-    setCurrentPage(pageNumber);
-    navigate(`?page=${pageNumber}`, { replace: true });
-  }
+  // function handlePageClick(pageNumber) {
+  //   setIsSubmited(true);
+  //   setCurrentPage(pageNumber);
+  //   navigate(`?page=${pageNumber}`, { replace: true });
+  // }
 
   const getPageCount = (totalCount, limit = 9) => {
     const totalPages = Math.ceil(totalCount / limit);
@@ -122,7 +111,6 @@ function App() {
         <Route
           path='/'
           element={
-            <>
               <Search
                 cards={cards}
                 isSubmited={isSubmited}
@@ -132,30 +120,22 @@ function App() {
                 searchQuery={searchQuery}
                 onSearch={handleSearch}
                 currentPage={currentPage}
-              />
-              <Pagination
-                currentPage={currentPage}
-                onPageChange={changePage}
+                changePage={changePage}
                 totalPages={totalPages}
-                handleClickDown={handlePrevPage}
-                handleClickGo={handleNextPage}
               />
-            </>
           }
         />
         <Route
           path='/trends'
           element={
-            <>
-              <Trends cards={trends} onTrends={handleTrends} isSubmited={isSubmited} currentPage={currentPage} />
-              <Pagination
+              <Trends
+                cards={trends}
+                onTrends={handleTrends}
+                isSubmited={isSubmited}
                 currentPage={currentPage}
-                onPageChange={changePage}
+                changePage={changePage}
                 totalPages={totalPages}
-                handleClickDown={handlePrevPage}
-                handleClickGo={handleNextPage}
               />
-            </>
           }
         />
         <Route
