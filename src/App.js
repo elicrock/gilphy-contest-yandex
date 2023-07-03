@@ -111,31 +111,31 @@ function App() {
         <Route
           path='/'
           element={
-              <Search
-                cards={cards}
-                isSubmited={isSubmited}
-                handleClearInput={handleClearInput}
-                handleChange={setSearchQuery}
-                handleSubmit={handleSearchClick}
-                searchQuery={searchQuery}
-                onSearch={handleSearch}
-                currentPage={currentPage}
-                changePage={changePage}
-                totalPages={totalPages}
-              />
+            <Search
+              cards={cards}
+              isSubmited={isSubmited}
+              handleClearInput={handleClearInput}
+              handleChange={setSearchQuery}
+              handleSubmit={handleSearchClick}
+              searchQuery={searchQuery}
+              onSearch={handleSearch}
+              currentPage={currentPage}
+              changePage={changePage}
+              totalPages={totalPages}
+            />
           }
         />
         <Route
           path='/trends'
           element={
-              <Trends
-                cards={trends}
-                onTrends={handleTrends}
-                isSubmited={isSubmited}
-                currentPage={currentPage}
-                changePage={changePage}
-                totalPages={totalPages}
-              />
+            <Trends
+              cards={trends}
+              onTrends={handleTrends}
+              isSubmited={isSubmited}
+              currentPage={currentPage}
+              changePage={changePage}
+              totalPages={totalPages}
+            />
           }
         />
         <Route
