@@ -34,8 +34,7 @@ function App() {
   // }
 
   const getPageCount = (totalCount, limit = 9) => {
-    const totalPages = Math.ceil(totalCount / limit);
-    return Math.min(totalPages, 10);
+    return Math.ceil(totalCount / limit);
   };
 
   useEffect(() => {

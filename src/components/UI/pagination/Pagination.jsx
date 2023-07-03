@@ -1,10 +1,12 @@
 import React from 'react';
 
 function Pagination({ currentPage, totalPages, onPageChange }) {
-  const pageNumbers = [];
+  const visiblePages = [];
+  const startPage = Math.max(1, currentPage - 5);
+  const endPage = Math.min(startPage + 9, totalPages);
 
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
+  for (let i = startPage; i <= endPage; i++) {
+    visiblePages.push(i);
   }
 
   function handlePrevPage() {
@@ -19,12 +21,13 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
     }
   }
 
-
   return (
     <>
       <ul className='pagination'>
-        <button onClick={handlePrevPage}>НАЗАД</button>
-        {pageNumbers.map((pageNumber) => (
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>
+          НАЗАД
+        </button>
+        {visiblePages.map((pageNumber) => (
           <li
             key={pageNumber}
             onClick={() => {
@@ -35,7 +38,9 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
             {pageNumber}
           </li>
         ))}
-        <button onClick={handleNextPage}>Вперед</button>
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+          Вперед
+        </button>
       </ul>
     </>
   );
