@@ -1,0 +1,21 @@
+.pagination__button {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+  font-size: 40px;
+}
+@media screen and (max-width: 900px) {
+  .pagination__button {
+    width: calc((100vw - 320px) / (900 - 320) * (100 - 80) + 80px);
+    height: calc((100vw - 320px) / (900 - 320) * (50 - 30) + 30px);
+  }
+}
+@media screen and (max-width: 600px) {
+  .pagination__button {
+    padding-bottom: 6px;
+    width: 100%;
+  }
+}

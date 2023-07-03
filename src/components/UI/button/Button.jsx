@@ -1,12 +1,15 @@
 import React from 'react';
 
-function Button({ type, btnClass, handleClick }) {
+function Button({ type, btnClass, handleClick, children, disabled }) {
   return (
     <button
+      disabled={disabled}
       type={type}
-      className={`search__button ${btnClass}`}
+      className={`search__button ${btnClass} ${disabled ? 'pagination__button_disabled' : ''}`}
       onClick={handleClick}
-    ></button>
+    >
+      {children}
+    </button>
   );
 }
 

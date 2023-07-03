@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../button/Button';
 
 function Pagination({ currentPage, totalPages, onPageChange }) {
   const visiblePages = [];
@@ -23,25 +24,27 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
 
   return (
     <>
-      <ul className='pagination'>
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          НАЗАД
-        </button>
-        {visiblePages.map((pageNumber) => (
-          <li
-            key={pageNumber}
-            onClick={() => {
-              onPageChange(pageNumber);
-            }}
-            className={`pagination__item ${pageNumber === currentPage ? 'pagination__item_active' : ''}`}
-          >
-            {pageNumber}
-          </li>
-        ))}
-        <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-          Вперед
-        </button>
-      </ul>
+      <div className='pagination__container'>
+        <Button btnClass={`pagination__button`} handleClick={handlePrevPage} disabled={currentPage === 1}>
+          ←
+        </Button>
+        <ul className='pagination'>
+          {visiblePages.map((pageNumber) => (
+            <li
+              key={pageNumber}
+              onClick={() => {
+                onPageChange(pageNumber);
+              }}
+              className={`pagination__item ${pageNumber === currentPage ? 'pagination__item_active' : ''}`}
+            >
+              {pageNumber}
+            </li>
+          ))}
+        </ul>
+        <Button btnClass={`pagination__button`} handleClick={handleNextPage} disabled={currentPage === totalPages}>
+          →
+        </Button>
+      </div>
     </>
   );
 }

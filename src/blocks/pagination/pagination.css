@@ -1,6 +1,17 @@
 .pagination {
-  margin-top: 30px;
+  padding: 0;
   list-style: none;
   display: flex;
   justify-content: center;
+  gap: 10px;
+}
+@media screen and (max-width: 900px) {
+  .pagination {
+    gap: 8px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .pagination {
+    flex-wrap: wrap;
+  }
 }
