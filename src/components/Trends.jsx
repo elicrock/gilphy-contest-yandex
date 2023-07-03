@@ -6,6 +6,7 @@ import Loader from './UI/loader/Loader';
 function Trends({ cards, onTrends, isSubmited, currentPage }) {
   useEffect(() => {
     onTrends(currentPage);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 

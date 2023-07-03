@@ -11,28 +11,23 @@ function Header({ onTrends, onRandom }) {
 
   return (
     <header className='header'>
-      <div className="header__logo">
+      <div className='header__logo'>
         <h1 className='header__title'>LOGO</h1>
-        <button className="header__burger" onClick={handleMenuClick}>
+        <button className='header__burger' onClick={handleMenuClick}>
           <span className={`header__burger-line ${isMenuOpen ? 'header__burger-line_close' : ''}`}></span>
         </button>
       </div>
       <nav className='header__navigation'>
         <ul className={`header__links ${isMenuOpen ? 'header__links_mobile-open' : ''}`}>
           <li className='header__item'>
-            <Link
-              to='/'
-              className={`header__link ${location.pathname === '/' ? 'header__link_active' : ''
-                }`}
-            >
+            <Link to='/' className={`header__link ${location.pathname === '/' ? 'header__link_active' : ''}`}>
               Поиск
             </Link>
           </li>
           <li className='header__item'>
             <Link
               to='/trends'
-              className={`header__link ${location.pathname === '/trends' ? 'header__link_active' : ''
-                }`}
+              className={`header__link ${location.pathname === '/trends' ? 'header__link_active' : ''}`}
               onClick={onTrends}
             >
               Тренды
@@ -41,8 +36,7 @@ function Header({ onTrends, onRandom }) {
           <li className='header__item'>
             <Link
               to='/random-gif'
-              className={`header__link ${location.pathname === '/random-gif' ? 'header__link_active' : ''
-                }`}
+              className={`header__link ${location.pathname === '/random-gif' ? 'header__link_active' : ''}`}
               onClick={onRandom}
             >
               Случайная гифка
