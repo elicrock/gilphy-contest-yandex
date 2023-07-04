@@ -13,8 +13,8 @@ function Header({ onTrends, onRandom }) {
   return (
     <header className='header'>
       <div className='header__logo-container'>
-        <Link to="/gilphy-contest-yandex" className="header__logo-link" >
-          <img src={logo} alt="GIF Logo" className="header__logo-image" />
+        <Link to='/' className='header__logo-link'>
+          <img src={logo} alt='GIF Logo' className='header__logo-image' />
         </Link>
         <button className='header__burger' onClick={handleMenuClick}>
           <span className={`header__burger-line ${isMenuOpen ? 'header__burger-line_close' : ''}`}></span>
