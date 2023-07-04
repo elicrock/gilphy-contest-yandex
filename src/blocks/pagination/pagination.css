@@ -1,17 +1,14 @@
 .pagination {
-  padding: 0;
-  list-style: none;
-  display: flex;
-  justify-content: center;
   gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 17px;
 }
-@media screen and (max-width: 900px) {
+
+@media screen and (max-width: 600px) {
   .pagination {
     gap: 8px;
-  }
-}
-@media screen and (max-width: 425px) {
-  .pagination {
     flex-wrap: wrap;
   }
 }

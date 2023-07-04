@@ -1,0 +1,11 @@
+.header__logo-link {
+  margin: 0;
+  padding: 0;
+  width: 150px;
+}
+
+@media screen and (max-width: 446px) {
+  .header__logo-link {
+    width: calc((100vw - 320px)/(446 - 320) * (150 - 100) + 100px);
+  }
+}

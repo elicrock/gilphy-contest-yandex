@@ -1,0 +1,7 @@
+.pagination__button-right {
+  background-image: url(../../../images/arrow.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  transform: scaleX(-1);
+}

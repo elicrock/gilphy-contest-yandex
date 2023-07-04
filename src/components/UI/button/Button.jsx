@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Button({ type, btnClass, handleClick, children, disabled }) {
+function Button({ type, btnClass, btnDisabledClass, handleClick, children, disabled }) {
   return (
     <button
       disabled={disabled}
       type={type}
-      className={`search__button ${btnClass} ${disabled ? 'pagination__button_disabled' : ''}`}
+      className={`${btnClass} ${disabled ? btnDisabledClass : ''}`}
       onClick={handleClick}
     >
       {children}

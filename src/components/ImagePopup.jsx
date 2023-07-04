@@ -1,29 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { usePopupClose } from "../hooks/usePopupClose";
 
 function ImagePopup({ card, onClose }) {
-  useEffect(() => {
-    function handleEscClose(evt) {
-      if (evt.key === 'Escape') {
-        onClose();
-      }
-    }
-    document.addEventListener('keydown', handleEscClose);
-    return () => {
-      document.removeEventListener('keydown', handleEscClose);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [card]);
+  const cardUrl = card?.images?.original?.url;
 
-  const handlePopupClick = (evt) => {
-    if (evt.target.classList.contains('popup')) {
-      onClose();
-    }
-  };
+  usePopupClose(cardUrl, onClose);
+
   return (
-    <div className={`popup popup_type_image ${card ? 'popup_open' : ''}`} onClick={handlePopupClick}>
-      <figure className='popup__image-container'>
-        <img className='popup__image' src={card ? card.images?.original?.url : '#'} alt={card ? card.name : ''} />
-      </figure>
+    <div className={`popup popup_type_image ${card ? 'popup_open' : ''}`}>
+      <div className="popup__image-container">
+        <button className="popup__close-button" type="button" onClick={onClose}></button>
+        <img src={card ? cardUrl : '#'} alt={card ? card.title : ''} className="popup__image" />
+        <h2 className="popup__image-title">{card ? card.title : ''}</h2>
+      </div>
     </div>
   );
 }

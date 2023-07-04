@@ -1,6 +1,6 @@
 .elements__item_big {
-  width: 100%;
+  width: 70%;
   height: auto;
   flex-direction: row;
-  aspect-ratio: 2/1;
+  aspect-ratio: 2/1.5;
 }

@@ -1,0 +1,6 @@
+.pagination__button-left {
+  background-image: url(../../../images/arrow.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
+}

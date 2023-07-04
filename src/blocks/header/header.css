@@ -1,14 +1,14 @@
 .header {
   margin: auto 0;
-  padding: 40px 17px;
+  padding: 25px 17px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 25px;
 }
 
 @media screen and (max-width: 446px) {
   .header {
-    padding: calc((100vw - 320px)/(446 - 320) * (40 - 20) + 20px) 17px;
-    gap: calc((100vw - 320px)/(446 - 320) * (40 - 20) + 20px);
+    padding: calc((100vw - 320px)/(446 - 320) * (25 - 20) + 20px) 17px;
+    gap: calc((100vw - 320px)/(446 - 320) * (25 - 20) + 20px);
   }
 }

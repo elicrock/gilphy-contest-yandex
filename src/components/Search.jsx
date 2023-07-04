@@ -35,8 +35,8 @@ function Search({
         <section className='search'>
           <Form handleSubmit={handleSubmit}>
             <Input placeholder='Искать' handleChange={handleChange} value={searchQuery} />
-            <Button type='reset' btnClass='search__clear-btn' handleClick={handleClearInput} />
-            <Button type='submit' btnClass='search__sumbit-btn' />
+            <Button type='reset' btnClass='search__button search__clear-btn' handleClick={handleClearInput} />
+            <Button type='submit' btnClass='search__button search__sumbit-btn' />
           </Form>
         </section>
         <section className='elements'>

@@ -24,11 +24,9 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
 
   return (
     <>
-      <div className='pagination__container'>
-        <Button btnClass={`pagination__button`} handleClick={handlePrevPage} disabled={currentPage === 1}>
-          ←
-        </Button>
-        <ul className='pagination'>
+      <div className='pagination'>
+        <Button btnClass={`pagination__button pagination__button-left`} btnDisabledClass={`pagination__button_disabled`} handleClick={handlePrevPage} disabled={currentPage === 1} />
+        <ul className='pagination__list'>
           {visiblePages.map((pageNumber) => (
             <li
               key={pageNumber}
@@ -41,9 +39,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
             </li>
           ))}
         </ul>
-        <Button btnClass={`pagination__button`} handleClick={handleNextPage} disabled={currentPage === totalPages}>
-          →
-        </Button>
+        <Button btnClass={`pagination__button pagination__button-right`} handleClick={handleNextPage} disabled={currentPage === totalPages} />
       </div>
     </>
   );

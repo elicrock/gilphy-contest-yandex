@@ -3,7 +3,9 @@
 @import url(./blocks/loader/loader.css);
 
 @import url(./blocks/header/header.css);
-@import url(./blocks/header/__logo/header__logo.css);
+@import url(./blocks/header/__logo-container/header__logo-container.css);
+@import url(./blocks/header/__logo-link/header__logo-link.css);
+@import url(./blocks/header/__logo-image/header__logo-image.css);
 @import url(./blocks/header/__title/header__title.css);
 @import url(./blocks/header/__navigation/header__navigation.css);
 @import url(./blocks/header/__burger/header__burger.css);
@@ -34,15 +36,19 @@
 @import url(./blocks/elements/__img/elements__img.css);
 @import url(./blocks/elements/__item/_big/elements__item_big.css);
 
-@import url(./blocks/pagination/__container/pagination__container.css);
 @import url(./blocks/pagination/pagination.css);
+@import url(./blocks/pagination/__list/pagination__list.css);
 @import url(./blocks/pagination/__item/pagination__item.css);
 @import url(./blocks/pagination/__item/_active/pagination__item_active.css);
 @import url(./blocks/pagination/__button/pagination__button.css);
+@import url(./blocks/pagination/__button-left/pagination__button-left.css);
+@import url(./blocks/pagination/__button-right/pagination__button-right.css);
 @import url(./blocks/pagination/__button/_disabled/pagination__button_disabled.css);
 
 @import url(./blocks/popup/popup.css);
-@import url(./blocks/popup/__image/popup__image.css);
-@import url(./blocks/popup/__image/popup__image.css);
 @import url(./blocks/popup/_type_image/popup_type_image.css);
 @import url(./blocks/popup/_open/popup_open.css);
+@import url(./blocks/popup/__image-container/popup__image-container.css);
+@import url(./blocks/popup/__close-button/popup__close-button.css);
+@import url(./blocks/popup/__image/popup__image.css);
+@import url(./blocks/popup/__image-title/popup__image-title.css);

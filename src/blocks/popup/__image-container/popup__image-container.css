@@ -1,4 +1,10 @@
 .popup__image-container {
-  margin: 0;
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: calc(60vw + 48px);
+  padding: 0;
   position: relative;
 }
