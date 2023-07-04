@@ -39,7 +39,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
             </li>
           ))}
         </ul>
-        <Button btnClass={`pagination__button pagination__button-right`} handleClick={handleNextPage} disabled={currentPage === totalPages} />
+        <Button btnClass={`pagination__button pagination__button-right`} btnDisabledClass={`pagination__button_disabled`} handleClick={handleNextPage} disabled={currentPage === totalPages} />
       </div>
     </>
   );
