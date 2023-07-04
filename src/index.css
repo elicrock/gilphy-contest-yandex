@@ -52,3 +52,6 @@
 @import url(./blocks/popup/__close-button/popup__close-button.css);
 @import url(./blocks/popup/__image/popup__image.css);
 @import url(./blocks/popup/__image-title/popup__image-title.css);
+
+@import url(./blocks/error/error.css);
+@import url(./blocks/error/__message/error__message.css);

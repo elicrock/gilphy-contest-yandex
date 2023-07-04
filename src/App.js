@@ -17,6 +17,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,9 +36,10 @@ function App() {
         .then((res) => {
           setCards(res.data);
           setTotalPages(getPageCount(res.pagination.total_count));
+          setErrorMessage('');
         })
         .catch((error) => {
-          console.log(error);
+          setErrorMessage(`Произошла ${error} при выполнение запроса`);
         })
         .finally(() => {
           setIsSubmited(false);
@@ -52,9 +54,10 @@ function App() {
       .then((res) => {
         setTrends(res.data);
         setTotalPages(getPageCount(res.pagination.total_count));
+        setErrorMessage('');
       })
       .catch((error) => {
-        console.log(error);
+        setErrorMessage(`Произошла ${error} при выполнение запроса`);
       })
       .finally(() => {
         setIsSubmited(false);
@@ -67,9 +70,10 @@ function App() {
       .random()
       .then((res) => {
         setRandomGif(res.data);
+        setErrorMessage('');
       })
       .catch((error) => {
-        console.log(error);
+        setErrorMessage(`Произошла ${error}. Гифка не найдена =(`);
       })
       .finally(() => {
         setIsSubmited(false);
@@ -99,6 +103,7 @@ function App() {
 
   function handleClearInput() {
     setSearchQuery('');
+    setErrorMessage('');
     setCards([]);
   }
 
@@ -120,6 +125,7 @@ function App() {
               changePage={changePage}
               totalPages={totalPages}
               onCardClick={handleCardClick}
+              errorMessage={errorMessage}
             />
           }
         />
@@ -134,13 +140,20 @@ function App() {
               changePage={changePage}
               totalPages={totalPages}
               onCardClick={handleCardClick}
+              errorMessage={errorMessage}
             />
           }
         />
         <Route
           path='/random-gif'
           element={
-            <RandomGif card={randomGif} onRandom={handleRandom} isSubmited={isSubmited} onCardClick={handleCardClick} />
+            <RandomGif
+              card={randomGif}
+              onRandom={handleRandom}
+              isSubmited={isSubmited}
+              onCardClick={handleCardClick}
+              errorMessage={errorMessage}
+            />
           }
         />
         <Route path='*' element={<PageNotFound />} />

@@ -6,8 +6,8 @@ import Button from './UI/button/Button';
 import Card from './Card';
 import Header from './Header';
 import Pagination from './UI/pagination/Pagination';
-
 import Loader from './UI/loader/Loader';
+import Error from './UI/error/Error';
 
 function Search({
   cards,
@@ -21,6 +21,7 @@ function Search({
   changePage,
   totalPages,
   onCardClick,
+  errorMessage,
 }) {
   useEffect(() => {
     onSearch(currentPage);
@@ -53,6 +54,7 @@ function Search({
           )}
         </section>
         {cards.length > 0 && <Pagination currentPage={currentPage} onPageChange={changePage} totalPages={totalPages} />}
+        {cards.length === 0 && errorMessage && <Error children={errorMessage} />}
       </main>
     </>
   );

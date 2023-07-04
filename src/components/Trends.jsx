@@ -3,8 +3,9 @@ import Card from './Card';
 import Header from './Header';
 import Pagination from './UI/pagination/Pagination';
 import Loader from './UI/loader/Loader';
+import Error from './UI/error/Error';
 
-function Trends({ cards, onTrends, isSubmited, currentPage, changePage, totalPages, onCardClick }) {
+function Trends({ cards, onTrends, isSubmited, currentPage, changePage, totalPages, onCardClick, errorMessage }) {
   useEffect(() => {
     onTrends(currentPage);
 
@@ -26,7 +27,8 @@ function Trends({ cards, onTrends, isSubmited, currentPage, changePage, totalPag
             </ul>
           )}
         </section>
-        <Pagination currentPage={currentPage} onPageChange={changePage} totalPages={totalPages} />
+        {cards.length > 0 && <Pagination currentPage={currentPage} onPageChange={changePage} totalPages={totalPages} />}
+        {cards.length === 0 && errorMessage && <Error children={errorMessage} />}
       </main>
     </>
   );
