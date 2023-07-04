@@ -1,0 +1,12 @@
+.elements__note {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.2;
+  text-align: center;
+}
+
+@media screen and (max-width: 446px) {
+  .elements__note {
+    font-size: 18px;
+  }
+}

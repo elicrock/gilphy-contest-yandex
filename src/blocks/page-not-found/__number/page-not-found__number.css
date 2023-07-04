@@ -1,4 +1,10 @@
 .page-not-found__number {
   font-size: 106px;
   font-weight: 900;
+  color: #ea5400;
+}
+@media screen and (max-width: 768px) {
+  .page-not-found__number {
+    font-size: 80px;
+  }
 }
