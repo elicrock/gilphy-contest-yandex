@@ -1,0 +1,15 @@
+.error__message {
+  margin: 20px 10px 0;
+  padding: 0;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  color: rgb(230, 9, 9);
+}
+
+@media screen and (max-width: 600px) {
+  .error__message {
+    margin-top: 10px;
+    font-size: 20px;
+  }
+}

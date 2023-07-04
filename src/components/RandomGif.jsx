@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import Header from './Header';
 import Card from './Card';
 import Loader from './UI/loader/Loader';
+import Error from './UI/error/Error';
 
-function RandomGif({ card, onRandom, isSubmited, onCardClick }) {
+function RandomGif({ card, onRandom, isSubmited, onCardClick, errorMessage }) {
   useEffect(() => {
     onRandom();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -22,6 +23,7 @@ function RandomGif({ card, onRandom, isSubmited, onCardClick }) {
             </ul>
           )}
         </section>
+        {card && errorMessage && <Error children={errorMessage} />}
       </main>
     </>
   );
