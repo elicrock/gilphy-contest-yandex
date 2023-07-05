@@ -22,6 +22,7 @@
 @import url(./blocks/search/__form/search__form.css);
 @import url(./blocks/search/__input/search__input.css);
 @import url(./blocks/search/__button/search__button.css);
+@import url(./blocks/search/__button/_disabled/search__button_disabled.css);
 @import url(./blocks/search/__clear-btn/search__clear-btn.css);
 @import url(./blocks/search/__submit-btn/search__sumbit-btn.css);
 
@@ -30,6 +31,7 @@
 @import url(./blocks/elements/__item/elements__item.css);
 @import url(./blocks/elements/__img/elements__img.css);
 @import url(./blocks/elements/__item/_big/elements__item_big.css);
+@import url(./blocks/elements/__random-button/elements__random-button.css);
 @import url(./blocks/elements/__note/elements__note.css);
 
 @import url(./blocks/page-not-found/page-not-found.css);

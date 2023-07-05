@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Form from './UI/form/Form';
 import Input from './UI/input/Input';
@@ -23,9 +23,12 @@ function Search({
   onCardClick,
   errorMessage,
 }) {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
   useEffect(() => {
     onSearch(currentPage);
-
+    console.log(searchQuery.trim() === '');
+    setIsButtonDisabled(searchQuery.trim() === '');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, currentPage, isSubmited]);
 
@@ -37,7 +40,7 @@ function Search({
           <Form handleSubmit={handleSubmit}>
             <Input placeholder='Искать' handleChange={handleChange} value={searchQuery} />
             <Button type='reset' btnClass='search__button search__clear-btn' handleClick={handleClearInput} />
-            <Button type='submit' btnClass='search__button search__sumbit-btn' />
+            <Button type='submit' btnClass='search__button search__sumbit-btn' btnDisabledClass={`search__button_disabled`} disabled={isButtonDisabled} />
           </Form>
         </section>
         <section className='elements'>

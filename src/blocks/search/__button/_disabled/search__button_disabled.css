@@ -1,4 +1,4 @@
-.pagination__button_disabled {
+.search__button_disabled {
   pointer-events: none;
   background-color: rgba(187, 187, 187, 0.3);
 }

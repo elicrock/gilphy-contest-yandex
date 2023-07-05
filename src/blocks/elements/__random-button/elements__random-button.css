@@ -1,0 +1,11 @@
+.elements__random-button {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: none;
+  cursor: pointer;
+  background: rgba(234, 84, 0, 0.1);
+  border-radius: 4px;
+}
