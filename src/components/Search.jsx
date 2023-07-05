@@ -27,7 +27,6 @@ function Search({
 
   useEffect(() => {
     onSearch(currentPage);
-    console.log(searchQuery.trim() === '');
     setIsButtonDisabled(searchQuery.trim() === '');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, currentPage, isSubmited]);
