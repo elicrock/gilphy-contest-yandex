@@ -27,7 +27,6 @@ function Search({
 
   useEffect(() => {
     onSearch(currentPage);
-    console.log(searchQuery.trim() === '');
     setIsButtonDisabled(searchQuery.trim() === '');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, currentPage, isSubmited]);
@@ -40,7 +39,12 @@ function Search({
           <Form handleSubmit={handleSubmit}>
             <Input placeholder='Искать' handleChange={handleChange} value={searchQuery} />
             <Button type='reset' btnClass='search__button search__clear-btn' handleClick={handleClearInput} />
-            <Button type='submit' btnClass='search__button search__sumbit-btn' btnDisabledClass={`search__button_disabled`} disabled={isButtonDisabled} />
+            <Button
+              type='submit'
+              btnClass='search__button search__sumbit-btn'
+              btnDisabledClass={`search__button_disabled`}
+              disabled={isButtonDisabled}
+            />
           </Form>
         </section>
         <section className='elements'>

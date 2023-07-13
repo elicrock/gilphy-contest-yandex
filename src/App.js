@@ -34,9 +34,14 @@ function App() {
       api
         .search(searchQuery, currentPage)
         .then((res) => {
-          setCards(res.data);
-          setTotalPages(getPageCount(res.pagination.total_count));
-          setErrorMessage('');
+          if (res.data.length === 0) {
+            setErrorMessage(`По вашему запросу ${searchQuery} ничего не найдено`);
+            setCards([]);
+          } else {
+            setCards(res.data);
+            setTotalPages(getPageCount(res.pagination.total_count));
+            setErrorMessage('');
+          }
         })
         .catch((error) => {
           setErrorMessage(`Произошла ${error} при выполнение запроса`);
