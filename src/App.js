@@ -35,7 +35,7 @@ function App() {
         .search(searchQuery, currentPage)
         .then((res) => {
           if (res.data.length === 0) {
-            setErrorMessage(`По вашему запросу ${searchQuery} ничего не найдено`);
+            setErrorMessage(`По вашему запросу "${searchQuery}" ничего не найдено`);
             setCards([]);
           } else {
             setCards(res.data);
