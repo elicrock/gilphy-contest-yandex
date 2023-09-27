@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/giphy-contest-yandex/static/css/main.99bfff33.css",
-    "main.js": "/giphy-contest-yandex/static/js/main.ed7044c0.js",
+    "main.js": "/giphy-contest-yandex/static/js/main.e41e2cd6.js",
     "static/media/logo.svg": "/giphy-contest-yandex/static/media/logo.1dc815ceac3018f724b081795563d109.svg",
     "static/media/arrow.svg": "/giphy-contest-yandex/static/media/arrow.75f67f60e76eade39e19.svg",
     "static/media/search-button.svg": "/giphy-contest-yandex/static/media/search-button.44219b16f0e05fec37e3.svg",
@@ -9,10 +9,10 @@
     "static/media/close-button-orange.svg": "/giphy-contest-yandex/static/media/close-button-orange.d66b22ac99319bd4c855.svg",
     "static/media/close-button-white.svg": "/giphy-contest-yandex/static/media/close-button-white.039f1f5203f653b4bacd.svg",
     "main.99bfff33.css.map": "/giphy-contest-yandex/static/css/main.99bfff33.css.map",
-    "main.ed7044c0.js.map": "/giphy-contest-yandex/static/js/main.ed7044c0.js.map"
+    "main.e41e2cd6.js.map": "/giphy-contest-yandex/static/js/main.e41e2cd6.js.map"
   },
   "entrypoints": [
     "static/css/main.99bfff33.css",
-    "static/js/main.ed7044c0.js"
+    "static/js/main.e41e2cd6.js"
   ]
 }
