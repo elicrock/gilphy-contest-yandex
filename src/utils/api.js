@@ -11,7 +11,7 @@ function request(url, options) {
   return fetch(url, options).then(resStatus);
 }
 
-export const BASE_URL = 'http://api.giphy.com/v1/gifs';
+export const BASE_URL = 'https://api.giphy.com/v1/gifs';
 export const API_KEY = apiKey;
 
 export const search = (query, page) => {
