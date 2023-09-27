@@ -1,3 +1,5 @@
+const apiKey = process.env.REACT_APP_API_KEY;
+
 function resStatus(res) {
   if (res.ok) {
     return res.json();
@@ -10,7 +12,7 @@ function request(url, options) {
 }
 
 export const BASE_URL = 'http://api.giphy.com/v1/gifs';
-export const API_KEY = 'SQHURABMQ01GCNGOXpzyEAxQu8ox3Rgw';
+export const API_KEY = apiKey;
 
 export const search = (query, page) => {
   const offset = (page - 1) * 9;
