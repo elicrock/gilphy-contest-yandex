@@ -30,4 +30,4 @@ npm start
 * Необходимо зарегистрироваться на API GIPHY и получить API ключ для работы приложения. И в корне проекта нужно создать файл `.env` в котором нужно создать переменную `REACT_APP_API_KEY=` и присвоить полученный API ключ.
 
 ## Ссылки проекта:
-* [Find your GIF](elicrock.github.io/giphy-contest-yandex)
+* [Find your GIF](https://elicrock.github.io/giphy-contest-yandex/)
